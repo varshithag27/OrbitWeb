@@ -54,7 +54,3 @@ If PowerShell blocks `activate`, run `venv\Scripts\python.exe app.py` instead.
 └── requirements.txt
 ```
 
-## Notes
-- Demo-grade: for production add rate-limiting, HTTPS, CSRF, and password reset.
-- Passwords are hashed with Werkzeug; never stored as plaintext.
-- Do not commit `.env`.
