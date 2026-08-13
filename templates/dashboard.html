@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Dashboard · Orbit{% endblock %}
+{% block content %}
+<div class="dash-shell">
+  <nav class="dash-nav">
+    <div class="brand" style="color:var(--text);">
+      <svg class="brand__mark" viewBox="0 0 30 30" fill="none">
+        <circle cx="15" cy="15" r="13" stroke="#3d5afe" stroke-width="2" opacity="0.35"/>
+        <circle cx="15" cy="6" r="3" fill="#3d5afe"/>
+        <circle cx="24" cy="20" r="3" fill="#3d5afe"/>
+        <circle cx="6" cy="20" r="3" fill="#3d5afe"/>
+      </svg>
+      Orbit
+    </div>
+    <a href="{{ url_for('logout') }}"><button class="btn btn-ghost" style="width:auto;padding:10px 20px;">Log out</button></a>
+  </nav>
+
+  <main class="dash-main">
+    <div class="dash-card">
+      <div class="avatar-ring">{{ user.name[0] | upper }}</div>
+      <h2>Welcome, {{ user.name }}</h2>
+      <p class="muted">Your account is verified and secure.</p>
+
+      <div class="info-row"><span>Email</span><span>{{ user.email }}</span></div>
+      {% if user.phone %}
+      <div class="info-row"><span>Phone</span><span>{{ user.phone }}</span></div>
+      {% endif %}
+      <div class="info-row"><span>Member since</span><span>{{ user.created_at.strftime("%d %b %Y") }}</span></div>
+    </div>
+  </main>
+</div>
+{% endblock %}

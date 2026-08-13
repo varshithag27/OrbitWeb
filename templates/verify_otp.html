@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Verify code · Orbit{% endblock %}
+{% block content %}
+<div class="auth-shell">
+  {% include "_hero.html" %}
+
+  <div class="auth-form-panel">
+    <div class="auth-card">
+      <h2>Enter your code</h2>
+      <p class="sub">We sent a 6-digit code to <strong>{{ email }}</strong>{% if phone %} and {{ phone }}{% endif %}.</p>
+
+      <form method="POST" action="{{ url_for('verify_otp') }}">
+        <div class="otp-row">
+          {% for i in range(1, 7) %}
+          <input type="text" inputmode="numeric" maxlength="1" class="otp-box" name="digit{{ i }}" autocomplete="one-time-code">
+          {% endfor %}
+        </div>
+
+        <div class="otp-meta">
+          <span>Code expires in a few minutes.</span>
+          <button type="button" id="resendBtn" class="resend-btn">Resend code</button>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Verify &amp; continue</button>
+      </form>
+
+      <p class="switch-line"><a href="{{ url_for('login') }}">Back to log in</a></p>
+    </div>
+  </div>
+</div>
+{% endblock %}
